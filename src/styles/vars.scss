@@ -1,0 +1,84 @@
+@use 'sass:color';
+// 主题色
+$colors: (
+  primary: #409eff,
+  success: #67c23a,
+  warning: #e6a23c,
+  danger: #f56c6c,
+  info: #909399,
+);
+
+:root {
+  // 生成主题色和不同亮度的颜色
+  @each $val, $color in $colors {
+    // 主题色
+    --itmc-color-#{$val}: #{$color};
+    // 不同亮度的颜色
+    @for $i from 1 through 4 {
+      --itmc-color-#{$val}-light-#{2 * $i + 1}: #{color.mix(
+          #fff,
+          $color,
+          ((2 * $i + 1) * 10 * 1%)
+        )};
+    }
+    // dark2 和 light8 因为不符合上面的规律，我们在下面单独来生成
+    --itmc-color-#{$val}-light-8: #{color.mix(#fff, $color, 80 * 1%)}; // 80% 亮度
+    --itmc-color-#{$val}-dark-2: #{color.mix(#000, $color, 20 * 1%)}; // dark是和黑色进行混合
+  }
+
+  // 对应的是中性色
+  --itmc-color-white: #fff;
+  --itmc-color-black: #000;
+  --itmc-bg-color: #ffffff;
+  --itmc-bg-color-page: #f2f3f5;
+  --itmc-bg-color-overlay: #ffffff;
+  --itmc-text-color-primary: #303133;
+  --itmc-text-color-regular: #606266;
+  --itmc-text-color-secondary: #909399;
+  --itmc-text-color-placeholder: #a8abb2;
+  --itmc-text-color-disabled: #c0c4cc;
+  --itmc-border-color: #dcdfe6;
+  --itmc-border-color-light: #e4e7ed;
+  --itmc-border-color-lighter: #ebeef5;
+  --itmc-border-color-extra-light: #f2f6fc;
+  --itmc-border-color-dark: #d4d7de;
+  --itmc-border-color-darker: #cdd0d6;
+  --itmc-fill-color: #f0f2f5;
+  --itmc-fill-color-light: #f5f7fa;
+  --itmc-fill-color-lighter: #fafafa;
+  --itmc-fill-color-extra-light: #fafcff;
+  --itmc-fill-color-dark: #ebedf0;
+  --itmc-fill-color-darker: #e6e8eb;
+  --itmc-fill-color-blank: #ffffff;
+
+  // 和 border 相关的变量
+  --itmc-border-width: 1px;
+  --itmc-border-style: solid;
+  --itmc-border-color-hover: var(--itmc-text-color-disabled);
+  --itmc-border: var(--itmc-border-width) var(--itmc-border-style) var(--itmc-border-color);
+  --itmc-border-radius-base: 4px;
+  --itmc-border-radius-small: 2px;
+  --itmc-border-radius-round: 20px;
+  --itmc-border-radius-circle: 100%;
+
+  // 和 font 相关的变量
+  --itmc-font-size-extra-large: 20px;
+  --itmc-font-size-large: 18px;
+  --itmc-font-size-medium: 16px;
+  --itmc-font-size-base: 14px;
+  --itmc-font-size-small: 13px;
+  --itmc-font-size-extra-small: 12px;
+  --itmc-font-family:
+    'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    '\5fae\8f6f\96c5\9ed1', Arial, sans-serif;
+  --itmc-font-weight-primary: 500;
+
+  // 和 disabled 相关的变量
+  --itmc-disabled-bg-color: var(--itmc-fill-color-light);
+  --itmc-disabled-text-color: var(--itmc-text-color-placeholder);
+  --itmc-disabled-border-color: var(--itmc-border-color-light);
+
+  // 和 transition 过渡相关的变量
+  --itmc-transition-duration: 0.3s;
+  --itmc-transition-duration-fast: 0.2s;
+}
