@@ -8,3 +8,8 @@
   color: var(--itmc-icon-color);
   font-size: inherit;
 }
+@each $val in primary, info, success, warning, danger {
+  .itmc-icon--#{$val} {
+    --itmc-icon-color: var(--itmc-color-#{$val});
+  }
+}

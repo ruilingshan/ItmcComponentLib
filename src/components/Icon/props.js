@@ -7,4 +7,24 @@ export default {
   size: {
     type: String,
   },
+  rotation: {
+    type: [String, Number],
+  },
+  flip: {
+    type: [String, Number],
+  },
+  beat: Boolean,
+  'beat-fade': Boolean,
+  bounce: Boolean,
+  fade: Boolean,
+  shake: Boolean,
+  spin: Boolean,
+  'spin-reverse': Boolean,
+  'spin-pulse': Boolean,
+  type: {
+    type: String,
+  },
+  color: {
+    type: String,
+  },
 }
